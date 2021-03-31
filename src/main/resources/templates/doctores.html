@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Spring Boot</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+        <link th:href="@{/css/estilo.css}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+           <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
+      <div class="container">
+         <a href="#" class="navbar-brand">
+         <img src="../img/hospital.svg#" width="45" alt="" class="d-inline-block align-middle mr-2">
+         <span class="text-uppercase font-weight-bold">Clinica PA2</span>
+         </a>
+         <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+         <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item active"><a href="/" class="nav-link">Inicio <span class="sr-only">(current)</span></a></li>
+               <li class="nav-item"><a href="pacientes" class="nav-link">Pacientes</a></li>
+               <li class="nav-item"><a href="intervenciones" class="nav-link">Intervenciones</a></li>
+               <li class="nav-item"><a href="doctores" class="nav-link">Doctores</a></li>
+               <li class="nav-item"><a href="unidades" class="nav-link">Unidades</a></li>
+               <li class="nav-item"><a href="contacto" class="nav-link">Contacto</a></li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+        <div class="container">
+            <br>
+            <div>
+                <a href="/crear" class="btn btn-primary">Agregar Doctores</a>
+            </div>
+            <br>
+            <h2 th:if="${lista.isEmpty()}">No hay Doctores</h2>
+            <div th:if="${!lista.isEmpty()}">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Especialidad</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="doctores : ${lista}">
+                            <td th:text="${doctores.nombre}">
+                            <td th:text="${doctores.especialidad}">
+                            <td><a th:href="@{/actualizar/{id_doctor}(id_doctor=${doctores.id_doctor})}" class="btn btn-info">Editar</a></td>
+                            <td><a th:href="@{/eliminar/{id_doctor}(id_doctor=${doctores.id_doctor})}"class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
